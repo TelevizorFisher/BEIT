@@ -1,6 +1,52 @@
 function email_test(input) {
 	return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(input.value);
 }
+'use strict'
+
+window.onload = function () {
+	const parallax = document.querySelector('.wrapper')
+
+	if (parallax) {
+		const content = document.querySelector('.main__content')
+		const image = document.querySelector('.main__image')
+		const footerImage = document.querySelector('.footer__image')
+		const forImage = 10
+		const speed = 0.9
+
+		let positionX = 0,
+			positionY = 0
+		let coordXprocent = 0,
+			coordYprocent = 0
+		function setMouseparallaxStyle() {
+			const distX = coordXprocent - positionX
+			const distY = coordYprocent - positionY
+
+			positionX = positionX + distX * speed
+			positionY = positionY + distY * speed
+
+			image.style.cssText = `transform: translate(${positionX / forImage}%, ${
+				positionY / forImage
+			}%);`
+			footerImage.style.cssText = `transform: translate(${
+				positionX / forImage
+			}%, ${positionY / forImage}%);`
+
+			requestAnimationFrame(setMouseparallaxStyle)
+		}
+		setMouseparallaxStyle()
+
+		parallax.addEventListener('mousemove', function (e) {
+			const parallaxWidth = parallax.offsetWidth
+			const parallaxHeight = parallax.offsetHeight
+
+			const coordX = e.pageX - parallaxWidth / 2
+			const coordY = e.pageY - parallaxHeight / 2
+
+			coordXprocent = (coordX / parallaxWidth) * 100
+			coordYprocent = (coordY / parallaxHeight) * 100
+		})
+	}
+}
 
 //BildSlider
 let sliders = document.querySelectorAll('._swiper')

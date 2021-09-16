@@ -1040,6 +1040,11 @@ body.ie ._ibg img {
   color: #1db86a;
 }
 
+.menu__link._active {
+  color: #1db86a;
+  font-size: 26px;
+}
+
 .icon-menu {
   display: none;
 }
@@ -2852,6 +2857,10 @@ body.ie ._ibg img {
         -ms-flex-pack: center;
             justify-content: center;
     text-align: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
 
   .footer__image {
